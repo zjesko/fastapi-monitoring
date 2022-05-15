@@ -1,9 +1,9 @@
 # Independent Study Report
 
-Name: Akshat Chhajer
-Roll No: 2018114008
-Semester: Spring 2022
-Credits: 2
+Name: Akshat Chhajer \
+Roll No: 2018114008 \
+Semester: Spring 2022 \
+Credits: 2 \
 
 
 ## Topic
@@ -36,7 +36,6 @@ Grafana is a free and open source (FOSS/OSS) visualization tool that can be used
 
 - Docker/Docker Compose \
 Docker is an operating system virtualization technology that allows applications to be packaged as containers. This is a very fundamental part of cloud computing, as containerized applications can be run on any type of infrastructure, regardless of the provider. 
-
 Compose is a tool for defining and running multi-container Docker applications. With Compose, we use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
 
 
