@@ -63,11 +63,12 @@ def read_transactions(db: Session = Depends(get_db)):
     transactions = crud.get_transactions(db)
     return transactions
 
+
 @app.get("/transactions/{transaction_id}", response_model=schemas.Transaction)
-def read_transactions(transaction_id:int, db: Session = Depends(get_db)):
+def read_transactions(transaction_id: int, db: Session = Depends(get_db)):
     transaction = crud.get_transaction(db, id=transaction_id)
     if transaction is None:
-        raise HTTPException(status_code=404, detail="Transaction not found") 
+        raise HTTPException(status_code=404, detail="Transaction not found")
     return transaction
 
 
