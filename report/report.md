@@ -32,7 +32,7 @@ Postgres is a open source relational database management system based on SQL. It
 Prometheus is a open source time series database used for event monitoring and alerting. It records real-time metrics in a time series database built using a HTTP pull model, with flexible queries. Prometheus collects and stores its metrics as time series data, i.e. metrics information is stored with the timestamp at which it was recorded, alongside optional key-value pairs called labels.
 
 - Grafana \
-Grafana is a free and open source (FOSS/OSS) visualization tool that can be used on top of a variety of different data stores but is most commonly used together with Graphite, InfluxDB, Prometheus, and Elasticsearch. It enables users to easily create and edit beautiful dashboards which can visualize almost any kind of data and well as logs.
+Grafana is an open source visualization tool that can be used on top of a variety of different data stores but is most commonly used together with Graphite, InfluxDB, Prometheus, and Elasticsearch. It enables users to easily create and edit beautiful dashboards which can visualize almost any kind of data and well as logs.
 
 - Docker/Docker Compose \
 Docker is an operating system virtualization technology that allows applications to be packaged as containers. This is a very fundamental part of cloud computing, as containerized applications can be run on any type of infrastructure, regardless of the provider. 
@@ -99,7 +99,28 @@ scrape_configs:
 ## Grafana
 In grafana, dashboards are created which query prometheus and visualize the data in almost any format. These formats include time series charts, counters, histograms, bar graphs etc.
 
-The following monitoring dashboard was created as part of this project.
+Here prometheus is added as a grafana datasource with the following config.
+
+```yaml
+apiVersion: 1
+
+deleteDatasources:
+  - name: Prometheus
+    orgId: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    url: http://prometheus:9090
+    basicAuth: false
+    isDefault: true
+    version: 1
+    editable: true
+```
+
+The following monitoring dashboard was created as part of this project using the time series data from prometheus.
 
 ![dashboard](./dashboard.png)
 
@@ -191,6 +212,24 @@ docker-compose up -d --build
 - Grafana Endpoint: `localhost: 3000`
 
 Login into grafana using the creds mentioned in the `.env` file and import the dashboards using `dashbords/*.json`
+
+## Further Work
+The following work can be done to take this project forward.
+
+#### Alerting
+Grafana natively supports alerting. Thresholds can be set for any charts (eg. average response rate > 100ms) which can be used for sending alerts on slack/email etc. This can be very useful as immediate action can be taken to fix the problem like downtime of a particular service.
+
+Following is an example of a slack alert.
+
+![slack-alerts](./alerts.png)
+
+#### Logging
+Logging for our FastAPI application can also be setup using `Loki`. Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate. It does not index the contents of the logs, but rather a set of labels for each log stream.
+
+Using this, live logs of the application can directly be streamed as a dashboard on grafana. This can be useful for easy debugging on the go of the application which saves developer the time to ssh into the deployment machine and directly checking out logs. 
+
+#### Postgres Visualizations
+We can directly visualize the data present in our postgres application by writing SQL queries and represnting them in meaningful dashboard. This can be helpful to gain valuable insights depending on what data is being stored in the database. 
 
 ## Credits
 Done as part of IS (Independant Study) at SERC IIIT Hyderabad (Spring 2022 semester).
