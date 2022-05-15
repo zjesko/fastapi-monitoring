@@ -24,6 +24,10 @@ async def startup_event():
 def ping():
     return {"ping": "pong"}
 
+@app.get("/500")
+def error():
+    assert 0 == 1
+
 
 @app.post("/accounts/", response_model=schemas.Account)
 def create_account(account: schemas.AccountIn, db: Session = Depends(get_db)):
