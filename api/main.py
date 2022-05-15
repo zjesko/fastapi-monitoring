@@ -1,15 +1,25 @@
-from typing import List
 import uvicorn
-from fastapi import Depends, FastAPI, HTTPException
+from typing import List
 from sqlalchemy.orm import Session
+from fastapi import Depends, FastAPI, HTTPException
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from server import crud, models, schemas
 from server.database import get_db, engine
 
+# create models in db
 models.Base.metadata.create_all(bind=engine)
 
+# init app
 app = FastAPI(title="Bank", docs_url="/")
 
+# add prom middleware
+@app.on_event("startup")
+async def startup_event():
+    Instrumentator().instrument(app).expose(app)
+
+
+# routes
 @app.get("/ping")
 def ping():
     return {"ping": "pong"}
@@ -46,6 +56,6 @@ def read_transactions(db: Session = Depends(get_db)):
     transactions = crud.get_transactions(db)
     return transactions
 
-
+# run server
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8888, reload=True)
