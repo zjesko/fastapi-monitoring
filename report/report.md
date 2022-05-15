@@ -3,7 +3,7 @@
 Name: Akshat Chhajer \
 Roll No: 2018114008 \
 Semester: Spring 2022 \
-Credits: 2 \
+Credits: 2 
 
 
 ## Topic
