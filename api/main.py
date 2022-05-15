@@ -38,10 +38,10 @@ def read_accounts(db: Session = Depends(get_db)):
 
 @app.get("/accounts/{account_id}", response_model=schemas.Account)
 def read_account(account_id: int, db: Session = Depends(get_db)):
-    db_account = crud.get_account(db, account_id=account_id)
-    if db_account is None:
+    account = crud.get_account(db, id=account_id)
+    if account is None:
         raise HTTPException(status_code=404, detail="Account not found")
-    return db_account
+    return account
 
 
 @app.get(
@@ -62,6 +62,13 @@ def create_transaction(
 def read_transactions(db: Session = Depends(get_db)):
     transactions = crud.get_transactions(db)
     return transactions
+
+@app.get("/transactions/{transaction_id}", response_model=schemas.Transaction)
+def read_transactions(transaction_id:int, db: Session = Depends(get_db)):
+    transaction = crud.get_transaction(db, id=transaction_id)
+    if transaction is None:
+        raise HTTPException(status_code=404, detail="Transaction not found") 
+    return transaction
 
 
 # run server
