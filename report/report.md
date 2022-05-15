@@ -14,7 +14,7 @@ Credits: 2
 A stack for monitoring FastAPI applications using prometheus and grafana.
 
 - Github Link: https://github.com/akshatcx/fastapi-monitoring
-- Live deployment: 65.1.162.101:3000
+- Live deployment: http://65.1.162.101:3000
 
 ## Introduction
 During development and maintenance of microservices things go wrong. In many situations the problems root cause resides in the application code. It’s essential to have insight into the internals of the application. But how to enable observability of numerical values to ease understanding applications and troubleshoot problems? To solve this, a well-accepted practice to monitor software systems is presented so that we can understand performance characteristics, react quickly to system failures,
