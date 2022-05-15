@@ -3,6 +3,8 @@
 A stack for monitoring FASTapi applications using prometheus and grafana.
 
 ## Files
+
+```
 .
 ├── README.md
 ├── api                             # fastapi application
@@ -20,6 +22,7 @@ A stack for monitoring FASTapi applications using prometheus and grafana.
 ├── docker-compose.yml              # docker-compose file
 ├── env.example                     # template for env variables
 └── prometheus.yml                  # prometheus config
+```
 
 ## Running
 ```bash
