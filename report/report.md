@@ -19,22 +19,22 @@ A stack for monitoring FastAPI applications using prometheus and grafana.
 ## Introduction
 During development and maintenance of microservices things go wrong. In many situations the problems root cause resides in the application code. It’s essential to have insight into the internals of the application. But how to enable observability of numerical values to ease understanding applications and troubleshoot problems? To solve this, a well-accepted practice to monitor software systems is presented so that we can understand performance characteristics, react quickly to system failures,
 
-In the following demo, we will collect metrics from the API server using `Prometheus` and visualize the results in a `Grafana dashboard`.
+In the following demo, we will collect metrics from the API server using `Prometheus` and visualize the results in a `Grafana` dashboard.
 
 ## Technologies (Microservices)
-- FastAPI
+- FastAPI \
 FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. It is known for very high performance, which is said to be on par with NodeJS and Go (thanks to Starlette and Pydantic). It provides built in support for OpenAPI documentation and is designed to be easy to learn and use out of the box.
 
-- Postgres
+- Postgres \
 Postgres is a open source relational database management system based on SQL. It is used by the API server to store data in this application.
 
-- Prometheus
+- Prometheus \
 Prometheus is a open source time series database used for event monitoring and alerting. It records real-time metrics in a time series database built using a HTTP pull model, with flexible queries. Prometheus collects and stores its metrics as time series data, i.e. metrics information is stored with the timestamp at which it was recorded, alongside optional key-value pairs called labels.
 
-- Grafana
+- Grafana \
 Grafana is a free and open source (FOSS/OSS) visualization tool that can be used on top of a variety of different data stores but is most commonly used together with Graphite, InfluxDB, Prometheus, and Elasticsearch. It enables users to easily create and edit beautiful dashboards which can visualize almost any kind of data and well as logs.
 
-- Docker/Docker Compose
+- Docker/Docker Compose \
 Docker is an operating system virtualization technology that allows applications to be packaged as containers. This is a very fundamental part of cloud computing, as containerized applications can be run on any type of infrastructure, regardless of the provider. 
 
 Compose is a tool for defining and running multi-container Docker applications. With Compose, we use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
